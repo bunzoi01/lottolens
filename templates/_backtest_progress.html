@@ -1,0 +1,4 @@
+<div hx-get="/backtest/status" hx-trigger="every 1s" hx-swap="outerHTML">
+  <div class="progress"><div style="width:{{ (100 * bt.done / bt.total) if bt.total else 0 }}%"></div></div>
+  <p class="small muted">Testing draw {{ bt.done }} of {{ bt.total }}…</p>
+</div>

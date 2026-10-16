@@ -1,0 +1,2 @@
+<div class="notice {{ 'good' if ok else 'bad' }} small">{{ message }}
+  {% if details %}<ul>{% for d in details %}<li>{{ d }}</li>{% endfor %}</ul>{% endif %}</div>

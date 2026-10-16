@@ -1,0 +1,7 @@
+<div id="log-panel" {% if refreshing %}hx-get="/history/log" hx-trigger="every 2s" hx-swap="outerHTML"{% endif %}>
+  {% if refreshing %}<p class="small">Fetching… new requests are spaced 2 seconds apart.</p>{% endif %}
+  <div class="log" role="log">
+    {% for l in log_rows %}<div class="{{ l.level }}">{{ l.ts[:16].replace('T', ' ') }} {{ l.level }} {{ l.message }}</div>{% else %}<div class="muted">No activity yet.</div>{% endfor %}
+  </div>
+  <p class="small muted">Times are UTC. Full logs: ~/Library/Logs/LottoLens/lottolens.log</p>
+</div>

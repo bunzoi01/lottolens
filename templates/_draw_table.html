@@ -1,0 +1,25 @@
+<div id="draw-table">
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Date</th><th class="n">Draw</th><th>Winning numbers</th><th>Supps</th><th>Source</th></tr></thead>
+    <tbody>
+    {% for r in rows %}
+      <tr>
+        <td>{{ r.draw_date|nicedate }}</td>
+        <td class="n">{{ '{:,}'.format(r.draw_number) if r.draw_number else '—' }}</td>
+        <td><span class="balls">{% for i in range(1, 7) %}<span class="ball sm">{{ r['n' ~ i] }}</span>{% endfor %}</span></td>
+        <td>{% if r.supp1 is not none %}<span class="balls"><span class="ball sm supp">{{ r.supp1 }}</span><span class="ball sm supp">{{ r.supp2 }}</span></span>{% else %}<span class="muted">—</span>{% endif %}</td>
+        <td class="small muted">{{ r.source }}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="5" class="muted">No draws match.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  <div class="pager small">
+    {% if page > 1 %}<button class="btn" hx-get="/history?q={{ q|urlencode }}&page={{ page - 1 }}" hx-target="#draw-table" hx-swap="outerHTML">← Newer</button>{% endif %}
+    <span class="muted">Page {{ page }} of {{ pages }} · {{ total }} draws</span>
+    {% if page < pages %}<button class="btn" hx-get="/history?q={{ q|urlencode }}&page={{ page + 1 }}" hx-target="#draw-table" hx-swap="outerHTML">Older →</button>{% endif %}
+  </div>
+</div>

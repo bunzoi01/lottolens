@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %} · History{% endblock %}
+{% block content %}
+<div class="headline">
+  <div>
+    <h1>History</h1>
+    <div class="muted">{{ count }} draws stored · latest {{ latest|nicedate if latest else '—' }} · most recent draw {{ most_recent|nicedate }}</div>
+  </div>
+  <button class="btn primary" hx-post="/history/fetch" hx-target="#log-panel" hx-swap="outerHTML" {{ 'disabled' if refreshing }}>Fetch latest</button>
+</div>
+
+{% if discrepancies %}
+<section class="card">
+  <h2>Sources disagree ({{ discrepancies|length }})</h2>
+  <p class="small muted">The stored value hasn't been changed. Check the draw on <a href="{{ thelott_url }}" target="_blank" rel="noopener">thelott.com</a>, then pick one.</p>
+  <table><thead><tr><th>Draw</th><th>Field</th><th>Stored</th><th>Incoming</th><th></th></tr></thead><tbody>
+  {% for d in discrepancies %}
+    <tr>
+      <td>{{ d.draw_date|nicedate }}</td><td>{{ d.field }}</td>
+      <td>{{ d.stored|join(' ') }} <span class="small muted">({{ d.stored_source }})</span></td>
+      <td>{{ d.incoming|join(' ') }} <span class="small muted">({{ d.incoming_source }})</span></td>
+      <td class="row">
+        <form method="post" action="/discrepancy/{{ d.id }}/keep"><button class="btn">Keep stored</button></form>
+        {% if d.field != 'draw_number' %}<form method="post" action="/discrepancy/{{ d.id }}/accept"><button class="btn">Use incoming</button></form>{% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody></table>
+</section>
+{% endif %}
+
+<section class="card">
+  <div class="row spread" style="margin-bottom:.5rem">
+    <h2 style="margin:0">Draws</h2>
+    <input type="search" name="q" value="{{ q }}" placeholder="Search a date (2024-03) or numbers (7 21)"
+           style="min-width:280px" aria-label="Search draws"
+           hx-get="/history" hx-trigger="input changed delay:300ms, search" hx-target="#draw-table" hx-swap="outerHTML">
+  </div>
+  {% include "_draw_table.html" %}
+</section>
+
+<div class="grid-2">
+  <section class="card">
+    <h2>Fetch log</h2>
+    {% include "_log.html" %}
+  </section>
+
+  <section class="card">
+    <h2>Add results</h2>
+    <h3>Enter a draw manually</h3>
+    <form hx-post="/history/manual" hx-target="#manual-msg">
+      <div class="row">
+        <div class="field"><label for="m-date">Draw date</label><input id="m-date" type="date" name="draw_date" required></div>
+        <div class="field"><label for="m-dn">Draw number (optional)</label><input id="m-dn" name="draw_number" inputmode="numeric" size="6"></div>
+      </div>
+      <div class="field"><label for="m-nums">6 winning numbers</label><input id="m-nums" name="numbers" placeholder="2 15 16 33 41 43" required style="width:100%"></div>
+      <div class="field"><label for="m-supps">2 supplementaries (optional)</label><input id="m-supps" name="supps" placeholder="5 28" style="width:100%"></div>
+      <button class="btn primary">Save draw</button>
+    </form>
+    <div id="manual-msg"></div>
+
+    <h3>Import a CSV</h3>
+    <p class="small muted">Columns: draw_date,n1,n2,n3,n4,n5,n6, plus optional supp1,supp2,draw_number. Existing draws are matched by date; any conflicts are flagged, never overwritten.</p>
+    <form hx-post="/history/import" hx-target="#import-msg" hx-encoding="multipart/form-data">
+      <input type="file" name="file" accept=".csv,text/csv" required>
+      <button class="btn">Import</button>
+    </form>
+    <div id="import-msg"></div>
+  </section>
+</div>
+{% endblock %}

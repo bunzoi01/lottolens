@@ -1,0 +1,35 @@
+<div id="combos-card">
+{% if sset and sset.combos %}
+  <div class="row spread" style="margin-bottom:.5rem">
+    <div class="small muted">
+      {% if sset.kind == 'weekly' %}This week's set: fixed for this draw, changes after the next result.
+      {% else %}Regenerated set (random seed). <button class="btn small" hx-post="/weekly" hx-target="#combos-card" hx-swap="outerHTML">Back to this week's set</button>{% endif %}
+    </div>
+    <div class="row">
+      <button class="btn" type="button" data-copy-target="#combo-list">Copy</button>
+      <a class="btn" href="/export.csv?seed={{ sset.seed }}">Export CSV</a>
+      <button class="btn primary" hx-post="/regenerate" hx-target="#combos-card" hx-swap="outerHTML">
+        Regenerate <span class="htmx-indicator">…</span></button>
+    </div>
+  </div>
+  <ol class="combos" id="combo-list"
+      data-copy-text="{% for c in sset.combos %}{{ c.numbers|join(' ') }}{{ '\n' if not loop.last }}{% endfor %}">
+    {% for c in sset.combos %}
+    <li class="combo">
+      <span class="rank">{{ c.rank }}</span>
+      <span class="balls" aria-label="Numbers {{ c.numbers|join(', ') }}">
+        {% for n in c.numbers %}<span class="ball">{{ n }}</span>{% endfor %}
+      </span>
+      <span class="why">{{ c.explanation }}</span>
+      <span class="score" title="LottoLens Score: how closely the combination matches the weighting you chose. It isn't a probability of winning.">score {{ '%.1f'|format(c.score) }}</span>
+    </li>
+    {% endfor %}
+  </ol>
+  <p class="small muted" style="margin-top:.75rem">
+    Data through {{ sset.data_through|nicedate }} · seed {{ sset.seed }} · settings {{ sset.params_hash }} ·
+    algorithm v{{ sset.algo_version }} · made {{ sset.created_at[:16].replace('T', ' ') }} UTC
+  </p>
+{% else %}
+  <p>No suggestions yet. Add draw data on the <a href="/history">History</a> page.</p>
+{% endif %}
+</div>

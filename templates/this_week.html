@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %} · This Week{% endblock %}
+{% block content %}
+<div class="headline">
+  <div>
+    <div class="muted">Suggestions for the draw on</div>
+    <div class="hero">{{ target|nicedate if target else '—' }}</div>
+  </div>
+  <div class="small muted odds-note">
+    Each game has a 1 in 8,145,060 chance of Division 1<br>and about a 1 in {{ '%.0f'|format(odds_any) }} chance of any prize, whichever numbers you pick.
+  </div>
+</div>
+
+{% if stale %}
+<div class="notice warn">
+  The {{ target|nicedate }} result should be out by now, but it isn't stored yet, so these picks are for a draw that has
+  already happened. {% if refreshing %}A refresh is running…{% else %}Try <a href="/history">Fetch latest</a> or enter it manually.{% endif %}
+</div>
+{% endif %}
+
+<section class="card">
+  <h2>10 suggested games</h2>
+  {% include "_combos.html" %}
+</section>
+
+<div class="grid-2">
+  <section class="card">
+    <h2>Last draw vs what LottoLens suggested</h2>
+    {% if review %}
+      {% set d = review.draw %}
+      <div class="row" style="margin-bottom:.5rem">
+        <strong>{{ d.draw_date|nicedate }}</strong>
+        {% if d.draw_number %}<span class="muted small">Draw {{ '{:,}'.format(d.draw_number) }}</span>{% endif %}
+      </div>
+      <div class="balls" style="margin-bottom:.75rem">
+        {% for i in range(1, 7) %}<span class="ball win">{{ d['n' ~ i] }}</span>{% endfor %}
+        {% if d.supp1 is not none %}<span class="muted small" style="align-self:center;margin:0 .25rem">supps</span>
+        <span class="ball supp">{{ d.supp1 }}</span><span class="ball supp">{{ d.supp2 }}</span>{% endif %}
+      </div>
+      {% if review.games %}
+        {% if not review.pre_draw %}
+        <p class="notice small">These suggestions were generated <em>after</em> the draw (for example, during the first data import), so they aren't counted as live picks.</p>
+        {% endif %}
+        <table>
+          <thead><tr><th>Game</th><th class="n">Matched</th><th>Prize</th></tr></thead>
+          <tbody>
+          {% for g in review.games %}
+            <tr>
+              <td><span class="balls">{% for n in g.numbers %}<span class="ball sm {{ 'win' if n in review.winners else ('supp' if n in review.supps else '') }}">{{ n }}</span>{% endfor %}</span></td>
+              <td class="n">{{ g.matches }}{% if g.supp_matches %} + {{ g.supp_matches }} supp{% endif %}</td>
+              <td>{{ division_labels[g.division] if g.division else '—' }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+        <p class="small muted">Blue = matched a winning number. Dashed orange = matched a supplementary.</p>
+      {% else %}
+        <p class="muted">No suggestions were stored before this draw. Live tracking starts with the {{ target|nicedate }} draw.</p>
+      {% endif %}
+    {% else %}
+      <p class="muted">No draws stored yet.</p>
+    {% endif %}
+  </section>
+
+  <section class="card">
+    <h2>Live tracking so far</h2>
+    {% if live.draws %}
+      <div class="stat-row">
+        <div class="stat"><div class="label">Draws tracked</div><div class="value">{{ live.draws }}</div></div>
+        <div class="stat"><div class="label">Games</div><div class="value">{{ live.games }}</div></div>
+        <div class="stat"><div class="label">Prize-winning games</div><div class="value">{{ live.prize_games }}</div></div>
+      </div>
+      <p class="small muted">Random picks would expect about {{ '%.1f'|format(live.games / odds_any) }} prize-winning games out of {{ live.games }}.</p>
+    {% else %}
+      <p class="muted">Nothing tracked yet. After each draw, the suggestions stored <em>before</em> it are scored here automatically.</p>
+    {% endif %}
+    <p class="small"><a href="/backtest">See the backtest</a>: how these suggestions would have done over the past two years compared with random picks.</p>
+  </section>
+</div>
+{% endblock %}

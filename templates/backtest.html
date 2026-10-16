@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %} · Backtest{% endblock %}
+{% block content %}
+<div class="headline">
+  <div>
+    <h1>Backtest: LottoLens vs random picks</h1>
+    <div class="muted">For each past draw, LottoLens builds 10 games using only the results available before that draw, then scores them against what was actually drawn.</div>
+  </div>
+</div>
+
+<section class="card">
+  <form hx-post="/backtest/run" hx-target="#bt-progress" class="row">
+    <div class="field"><label for="bt-n">Draws to test</label><input id="bt-n" name="n_draws" type="number" value="104" min="10" max="1000"></div>
+    <div class="field"><label for="bt-t">Random trials per draw</label><input id="bt-t" name="trials" type="number" value="200" min="200" max="2000"></div>
+    <button class="btn primary" {{ 'disabled' if bt.running }}>Run backtest</button>
+  </form>
+  <div id="bt-progress">{% if bt.running %}{% include "_backtest_progress.html" %}{% endif %}</div>
+  {% if bt.error %}<div class="notice bad small">Backtest failed: {{ bt.error }}</div>{% endif %}
+</section>
+
+{% if result %}
+  {% set a = result.algo %}{% set r = result.random %}{% set t = result.theory %}
+  {% if settings_changed %}<div class="notice warn small">These results were made with different settings from your current ones. Run the backtest again to update them.</div>{% endif %}
+  <section class="card">
+    <h2>Verdict</h2>
+    <p style="font-size:1.05rem">{{ result.verdict }}</p>
+    <div class="stat-row">
+      <div class="stat"><div class="label">LottoLens prize-winning games</div><div class="value">{{ a.prize_games }}</div></div>
+      <div class="stat"><div class="label">Random picks (average)</div><div class="value">{{ '%.1f'|format(r.prize_games) }}</div></div>
+      <div class="stat"><div class="label">Expected by the odds</div><div class="value">{{ '%.1f'|format(t.prize_games) }}</div></div>
+      <div class="stat"><div class="label">Random trials doing as well or better</div><div class="value">{{ '%.0f'|format(result.empirical_p * 100) }}%</div></div>
+    </div>
+    <p class="small muted">{{ result.draws }} draws ({{ result.first_draw|nicedate }} to {{ result.last_draw|nicedate }}), {{ result.combos_per_draw }} games per draw,
+      {{ result.random_trials }} random trials per draw · settings {{ result.params_hash }} · algorithm v{{ result.algo_version }} · run {{ result.created_at[:16].replace('T',' ') }} UTC</p>
+  </section>
+
+  <section class="card">
+    <h2>Prize-winning games over time</h2>
+    <div class="legend">
+      <span><span class="key line" style="background:var(--series-1)"></span>LottoLens</span>
+      <span><span class="key line" style="background:var(--series-2)"></span>Random picks (average)</span>
+      <span><span class="key" style="background:var(--series-2);opacity:.25"></span>Middle 90% of random trials</span>
+    </div>
+    <div class="chart-box tall"><canvas id="bt-cum" aria-label="Cumulative prize-winning games, LottoLens vs random"></canvas></div>
+  </section>
+
+  <div class="grid-2">
+    <section class="card">
+      <h2>Prizes by division</h2>
+      <div class="legend">
+        <span><span class="key" style="background:var(--series-1)"></span>LottoLens</span>
+        <span><span class="key" style="background:var(--series-2)"></span>Random picks (average)</span>
+      </div>
+      <div class="chart-box"><canvas id="bt-div" aria-label="Prize counts by division"></canvas></div>
+    </section>
+    <section class="card">
+      <h2>Summary</h2>
+      <table>
+        <thead><tr><th></th><th class="n">LottoLens</th><th class="n">Random</th><th class="n">Expected</th></tr></thead>
+        <tbody>
+          <tr><td>Games played</td><td class="n">{{ a.games }}</td><td class="n">{{ r.games }}</td><td class="n">{{ a.games }}</td></tr>
+          {% for d in range(1, 7) %}
+          <tr><td>{{ division_labels[d] }}</td><td class="n">{{ a.divisions[d|string] }}</td><td class="n">{{ '%.2f'|format(r.divisions[d|string]) }}</td><td class="n">{{ '%.2f'|format(t.divisions[d|string]) }}</td></tr>
+          {% endfor %}
+          <tr><td><strong>Any prize</strong></td><td class="n"><strong>{{ a.prize_games }}</strong></td><td class="n"><strong>{{ '%.1f'|format(r.prize_games) }}</strong></td><td class="n"><strong>{{ '%.1f'|format(t.prize_games) }}</strong></td></tr>
+          <tr><td>Average numbers matched per game</td><td class="n">{{ '%.3f'|format(a.mean_matches) }}</td><td class="n">{{ '%.3f'|format(r.mean_matches) }}</td><td class="n">{{ '%.3f'|format(t.mean_matches) }}</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <section class="card" style="margin-top:1.1rem">
+    <h2>How to read this</h2>
+    <p>"Random picks" means {{ result.random_trials }} independent sets of 10 random games per draw. Their spread shows how much luck alone moves results over this many draws.
+      If LottoLens sits inside the shaded band, it is doing what any set of numbers would do. That's the expected outcome: every 6-number combination has the same 1 in 8,145,060 chance of Division 1 in every draw, whatever happened before.</p>
+    <p class="muted small">"Expected" is the exact long-run figure from the game's odds (about 1 prize-winning game in {{ '%.0f'|format(1 / t.prize_rate) }}).</p>
+  </section>
+  <script type="application/json" id="bt-data">{{ {'per_draw': result.per_draw, 'algo': a.divisions, 'random': r.divisions}|tojson }}</script>
+{% else %}
+  <p class="muted">No backtest yet. Run one above; the default takes about 15 seconds.</p>
+{% endif %}
+{% endblock %}
+{% block scripts %}<script defer src="/static/backtest.js"></script>{% endblock %}

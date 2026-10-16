@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %} · Settings{% endblock %}
+{% block content %}
+<h1>Settings</h1>
+{% if saved %}<div class="notice good small">Saved. This week's suggestions are rebuilt with the new settings, and they stay fixed until you change the settings again.</div>{% endif %}
+<form method="post" action="/settings">
+<div class="grid-2">
+  <section class="card">
+    <h2>Analysis window</h2>
+    <div class="field">
+      <label for="window">History used for analysis and suggestions</label>
+      <select id="window" name="window">
+        {% for w in windows %}<option value="{{ w }}" {{ 'selected' if w == s.window }}>{{ 'All draws' if w == 'all' else 'Last ' ~ w ~ (' year' if w == '1' else ' years') }}</option>{% endfor %}
+      </select>
+    </div>
+    <div class="field"><label for="hot_lookback">"Recent hotness" looks at the last N draws</label><input id="hot_lookback" name="hot_lookback" type="number" min="5" max="200" value="{{ s.hot_lookback }}"></div>
+    <div class="row">
+      <div class="field"><label for="hz">"Hot" if z-score ≥</label><input id="hz" name="hot_z_threshold" type="number" step="0.1" value="{{ s.hot_z_threshold }}"></div>
+      <div class="field"><label for="od">"Overdue" if gap ≥ × average</label><input id="od" name="overdue_threshold" type="number" step="0.1" value="{{ s.overdue_threshold }}"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Number weights</h2>
+    <p class="small muted">Relative weights; they're rescaled to add up to 100%. Changing them changes which numbers are preferred, not your chance of winning.</p>
+    {% set labels = {'frequency': 'Long-run frequency', 'hot': 'Recent hotness', 'overdue': 'Overdue factor', 'pair': 'Pair affinity', 'random': 'Random component'} %}
+    {% for k in weight_names %}
+    <div class="field">
+      <label for="w_{{ k }}">{{ labels[k] }}: <output id="o_{{ k }}">{{ '%.0f'|format(s.weights[k] * 100) }}</output> <span class="muted">(default {{ '%.0f'|format(defaults.weights[k] * 100) }})</span></label>
+      <input type="range" id="w_{{ k }}" name="w_{{ k }}" min="0" max="100" step="1" value="{{ '%.0f'|format(s.weights[k] * 100) }}"
+             oninput="document.getElementById('o_{{ k }}').value = this.value">
+    </div>
+    {% endfor %}
+  </section>
+
+  <section class="card">
+    <h2>Filters</h2>
+    <div class="field"><label for="sc">Keep sums inside the central share of historical sums</label><input id="sc" name="sum_central" type="number" step="0.05" min="0.3" max="1" value="{{ s.sum_central }}"></div>
+    <div class="row">
+      <div class="field"><label>Odd numbers: min / max</label><input name="odd_min" type="number" min="0" max="6" value="{{ s.odd_min }}" size="3"> <input name="odd_max" type="number" min="0" max="6" value="{{ s.odd_max }}" size="3"></div>
+      <div class="field"><label>Low numbers (1-22): min / max</label><input name="low_min" type="number" min="0" max="6" value="{{ s.low_min }}" size="3"> <input name="low_max" type="number" min="0" max="6" value="{{ s.low_max }}" size="3"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="mr">Longest run of consecutive numbers</label><input id="mr" name="max_run" type="number" min="1" max="6" value="{{ s.max_run }}"></div>
+      <div class="field"><label for="md">Minimum decade groups</label><input id="md" name="min_decades" type="number" min="1" max="5" value="{{ s.min_decades }}"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="mo">Max numbers two games can share</label><input id="mo" name="max_overlap" type="number" min="0" max="5" value="{{ s.max_overlap }}"></div>
+      <div class="field"><label for="mu">Max games per number</label><input id="mu" name="max_uses" type="number" min="1" max="10" value="{{ s.max_uses }}"></div>
+    </div>
+    <div class="field"><label for="nc">Candidate combinations generated</label><input id="nc" name="n_candidates" type="number" min="50000" max="500000" step="10000" value="{{ s.n_candidates }}"></div>
+  </section>
+
+  <section class="card">
+    <h2>Data sources</h2>
+    <div class="field"><label><input type="checkbox" name="lottonumbers_enabled" {{ 'checked' if s.lottonumbers_enabled }}> Fetch new results from au.lottonumbers.com</label></div>
+    <p class="small muted">Respects robots.txt, sends a descriptive User-Agent, makes at most 1 request every 2 seconds, caches pages and only asks for draws it doesn't already have.</p>
+    <p class="small muted">thelott.com loads its results in the browser and blocks automated requests, so use it as a manual cross-check: <a href="{{ thelott_url }}" target="_blank" rel="noopener">open Saturday Lotto results</a>. If a draw you enter disagrees with a stored one, it's flagged on the History page.</p>
+    <p class="small muted">You can also import a CSV or enter a draw manually on the History page.</p>
+  </section>
+</div>
+<div class="row" style="margin-top:1rem">
+  <button class="btn primary" type="submit">Save settings</button>
+  <button class="btn" type="submit" name="reset" value="1">Reset to defaults</button>
+  <span class="small muted">Settings fingerprint {{ s.params_hash() }}</span>
+</div>
+</form>
+{% endblock %}

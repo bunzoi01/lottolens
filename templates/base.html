@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LottoLens{% block title %}{% endblock %}</title>
+  <script>
+    try { const t = localStorage.getItem("lottolens-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="/static/app.css">
+  <script src="/static/vendor/htmx.min.js" defer></script>
+  <script src="/static/vendor/chart.umd.min.js" defer></script>
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">LottoLens</a>
+    <nav>
+      <a href="/" class="{{ 'on' if active == 'this_week' }}">This Week</a>
+      <a href="/analysis" class="{{ 'on' if active == 'analysis' }}">Analysis</a>
+      <a href="/history" class="{{ 'on' if active == 'history' }}">History</a>
+      <a href="/backtest" class="{{ 'on' if active == 'backtest' }}">Backtest</a>
+      <a href="/settings" class="{{ 'on' if active == 'settings' }}">Settings</a>
+    </nav>
+    <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch light or dark mode">◐</button>
+  </header>
+
+  <div class="disclaimer" role="note">
+    <strong>For entertainment only.</strong> Lotto draws are independent random events. Past results can't predict future
+    draws, and no set of numbers is more likely to win than any other. LottoLens is a statistical analysis tool, not a predictor.
+    If gambling is causing you harm, contact <a href="{{ gambling_help_url }}" target="_blank" rel="noopener">Gambling Help Online</a>
+    or call <a href="tel:1800858858">{{ gambling_help_phone }}</a> (free, 24/7).
+  </div>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    LottoLens runs locally on this Mac (127.0.0.1). Results data: au.lottonumbers.com; verify draws at
+    <a href="{{ thelott_url }}" target="_blank" rel="noopener">thelott.com</a>.
+    · <a href="{{ gambling_help_url }}" target="_blank" rel="noopener">Gambling Help Online</a> {{ gambling_help_phone }}
+  </footer>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
