@@ -30,8 +30,6 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
-    env:
-      LOTTOLENS_HOME: ${{ runner.temp }}/lottolens
     steps:
       - uses: actions/checkout@v4
 
@@ -46,6 +44,8 @@ jobs:
         run: uv run pytest -q
 
       - name: Refresh, backtest and build site
+        env:
+          LOTTOLENS_HOME: ${{ runner.temp }}/lottolens   # throwaway cache and logs
         run: uv run python -m lottolens cloud --data data --out _site
 
       - name: Commit updated data
