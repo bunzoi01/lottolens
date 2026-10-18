@@ -2,25 +2,38 @@
 <html lang="en-AU">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>LottoLens{% block title %}{% endblock %}</title>
+  {% if static_site %}
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Saturday Lotto statistics and weekly suggestions. For entertainment only.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('icons/icon-192.png') }}">
+  <link rel="apple-touch-icon" href="{{ asset('icons/apple-touch-icon.png') }}">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="LottoLens">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#fcfcfb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1a1a19" media="(prefers-color-scheme: dark)">
+  {% endif %}
   <script>
     try { const t = localStorage.getItem("lottolens-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
   </script>
-  <link rel="stylesheet" href="/static/app.css">
-  <script src="/static/vendor/htmx.min.js" defer></script>
-  <script src="/static/vendor/chart.umd.min.js" defer></script>
-  <script src="/static/app.js" defer></script>
+  <link rel="stylesheet" href="{{ asset('app.css') }}">
+  {% if not static_site %}<script src="{{ asset('vendor/htmx.min.js') }}" defer></script>{% endif %}
+  <script src="{{ asset('vendor/chart.umd.min.js') }}" defer></script>
+  <script src="{{ asset('app.js') }}" defer></script>
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="/">LottoLens</a>
+    <a class="brand" href="{{ link('this_week') }}">LottoLens</a>
     <nav>
-      <a href="/" class="{{ 'on' if active == 'this_week' }}">This Week</a>
-      <a href="/analysis" class="{{ 'on' if active == 'analysis' }}">Analysis</a>
-      <a href="/history" class="{{ 'on' if active == 'history' }}">History</a>
-      <a href="/backtest" class="{{ 'on' if active == 'backtest' }}">Backtest</a>
-      <a href="/settings" class="{{ 'on' if active == 'settings' }}">Settings</a>
+      <a href="{{ link('this_week') }}" class="{{ 'on' if active == 'this_week' }}">This Week</a>
+      <a href="{{ link('analysis') }}" class="{{ 'on' if active == 'analysis' }}">Analysis</a>
+      <a href="{{ link('history') }}" class="{{ 'on' if active == 'history' }}">History</a>
+      <a href="{{ link('backtest') }}" class="{{ 'on' if active == 'backtest' }}">Backtest</a>
+      {% if not static_site %}<a href="{{ link('settings') }}" class="{{ 'on' if active == 'settings' }}">Settings</a>{% endif %}
     </nav>
     <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch light or dark mode">◐</button>
   </header>
@@ -32,15 +45,38 @@
     or call <a href="tel:1800858858">{{ gambling_help_phone }}</a> (free, 24/7).
   </div>
 
+  {% if static_site %}
+  <div class="updated-bar small">
+    Read-only copy, updated automatically after each Saturday draw. Last updated {{ built_at }}.
+    <span id="offline-note" hidden> · You're offline, so this is the copy saved on your phone.</span>
+  </div>
+  {% endif %}
+
   <main>
     {% block content %}{% endblock %}
   </main>
 
   <footer class="footer">
+    {% if static_site %}
+    Built weekly by GitHub Actions from au.lottonumbers.com results. Verify draws at
+    {% else %}
     LottoLens runs locally on this Mac (127.0.0.1). Results data: au.lottonumbers.com; verify draws at
+    {% endif %}
     <a href="{{ thelott_url }}" target="_blank" rel="noopener">thelott.com</a>.
     · <a href="{{ gambling_help_url }}" target="_blank" rel="noopener">Gambling Help Online</a> {{ gambling_help_phone }}
   </footer>
   {% block scripts %}{% endblock %}
+  {% if static_site %}
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+    }
+    const offlineNote = document.getElementById("offline-note");
+    const syncOffline = () => { if (offlineNote) offlineNote.hidden = navigator.onLine; };
+    window.addEventListener("online", syncOffline);
+    window.addEventListener("offline", syncOffline);
+    syncOffline();
+  </script>
+  {% endif %}
 </body>
 </html>

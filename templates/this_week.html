@@ -14,7 +14,9 @@
 {% if stale %}
 <div class="notice warn">
   The {{ target|nicedate }} result should be out by now, but it isn't stored yet, so these picks are for a draw that has
-  already happened. {% if refreshing %}A refresh is running…{% else %}Try <a href="/history">Fetch latest</a> or enter it manually.{% endif %}
+  already happened.
+  {% if static_site %}The automatic update runs on Sunday morning with a Monday retry.
+  {% elif refreshing %}A refresh is running…{% else %}Try <a href="/history">Fetch latest</a> or enter it manually.{% endif %}
 </div>
 {% endif %}
 
@@ -74,7 +76,7 @@
     {% else %}
       <p class="muted">Nothing tracked yet. After each draw, the suggestions stored <em>before</em> it are scored here automatically.</p>
     {% endif %}
-    <p class="small"><a href="/backtest">See the backtest</a>: how these suggestions would have done over the past two years compared with random picks.</p>
+    <p class="small"><a href="{{ link('backtest') }}">See the backtest</a>: how these suggestions would have done over the past two years compared with random picks.</p>
   </section>
 </div>
 {% endblock %}

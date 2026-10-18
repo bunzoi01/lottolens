@@ -6,9 +6,10 @@
     <h1>Analysis</h1>
     <div class="muted">{{ draws }} draws{% if first %}, {{ first|nicedate }} to {{ last|nicedate }}{% endif %} (of {{ total_draws }} stored)</div>
   </div>
-  <form method="get" class="row">
+  <form method="get" class="row" {% if static_site %}onsubmit="return false"{% endif %}>
     <label for="window" style="margin:0">Window</label>
-    <select id="window" name="window" onchange="this.form.submit()">
+    <select id="window" name="window"
+      onchange="{% if static_site %}location.href = 'analysis-' + this.value + '.html'{% else %}this.form.submit(){% endif %}">
       {% for w in windows %}<option value="{{ w }}" {{ 'selected' if w == window }}>{{ 'All draws' if w == 'all' else 'Last ' ~ w ~ (' year' if w == '1' else ' years') }}</option>{% endfor %}
     </select>
   </form>
@@ -103,5 +104,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script defer src="/static/analysis.js"></script>
+<script defer src="{{ asset('analysis.js') }}"></script>
 {% endblock %}

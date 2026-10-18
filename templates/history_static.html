@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %} · History{% endblock %}
+{% block content %}
+<div class="headline">
+  <div>
+    <h1>History</h1>
+    <div class="muted">{{ count }} draws · latest {{ latest|nicedate if latest else '—' }}</div>
+  </div>
+  <a class="btn" href="draws.csv" download>Download all draws (CSV)</a>
+</div>
+
+<section class="card">
+  <div class="row spread" style="margin-bottom:.5rem">
+    <h2 style="margin:0">Draws</h2>
+    <input type="search" id="draw-search" placeholder="Search a date (2024-03) or numbers (7 21)"
+           style="min-width:260px" aria-label="Search draws">
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Date</th><th class="n">Draw</th><th>Winning numbers</th><th>Supps</th></tr></thead>
+      <tbody id="draw-rows"><tr><td colspan="4" class="muted">Loading…</td></tr></tbody>
+    </table>
+  </div>
+  <div class="pager small">
+    <button class="btn" type="button" id="page-prev">← Newer</button>
+    <span class="muted" id="page-info"></span>
+    <button class="btn" type="button" id="page-next">Older →</button>
+  </div>
+</section>
+<script type="application/json" id="draws-data">{{ draws|tojson }}</script>
+{% endblock %}
+{% block scripts %}<script defer src="{{ asset('history.js') }}"></script>{% endblock %}

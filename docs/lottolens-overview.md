@@ -41,8 +41,10 @@ Fetch the new result  ──►  Score last week's suggestions against it
 Build next week's 10 suggestions  ──►  Show them in the browser (and a macOS notification)
 ```
 
-The app checks for new results when it starts and every hour while it's running. An optional
-background job also checks on Sunday morning, with a Monday retry, even when the app isn't open.
+The weekly update runs in the cloud. Every Sunday at 10:00 Sydney time, with a Monday retry, a
+GitHub Actions job fetches the result, builds the new picks and publishes the phone version, so it
+doesn't depend on your Mac. On the Mac, the full app also checks for new results when it starts and
+every hour while it's running, and an optional background job can do the same on Sunday mornings.
 All times are Sydney time, including daylight saving.
 
 ### How the 10 suggestions are chosen
@@ -96,6 +98,18 @@ When the full history was first loaded, all 2,053 draws in the starter file matc
 au.lottonumbers.com exactly.
 
 ## How to access it
+
+### On your iPhone (no Mac needed)
+
+Open **<https://bunzoi01.github.io/lottolens/>** in Safari, tap **Share**, then
+**Add to Home Screen**. LottoLens then opens full-screen from its own icon. It works on Wi-Fi or
+mobile data, and it shows the last copy it loaded when there's no signal.
+
+This phone version is read-only: This Week, Analysis, History and Backtest. It's rebuilt every
+Sunday morning by GitHub Actions, on GitHub's servers, so your Mac can be off. The page is public
+to anyone who has the link, but it asks search engines not to list it.
+
+### On your Mac (the full app)
 
 1. **Install once.** You need a Mac with [uv](https://docs.astral.sh/uv/) or Python 3.12. Then
    download the project:

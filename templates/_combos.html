@@ -7,9 +7,13 @@
     </div>
     <div class="row">
       <button class="btn" type="button" data-copy-target="#combo-list">Copy</button>
+      {% if static_site %}
+      <a class="btn" href="picks.csv" download>Export CSV</a>
+      {% else %}
       <a class="btn" href="/export.csv?seed={{ sset.seed }}">Export CSV</a>
       <button class="btn primary" hx-post="/regenerate" hx-target="#combos-card" hx-swap="outerHTML">
         Regenerate <span class="htmx-indicator">…</span></button>
+      {% endif %}
     </div>
   </div>
   <ol class="combos" id="combo-list"
@@ -30,6 +34,6 @@
     algorithm v{{ sset.algo_version }} · made {{ sset.created_at[:16].replace('T', ' ') }} UTC
   </p>
 {% else %}
-  <p>No suggestions yet. Add draw data on the <a href="/history">History</a> page.</p>
+  <p>No suggestions yet.{% if not static_site %} Add draw data on the <a href="/history">History</a> page.{% endif %}</p>
 {% endif %}
 </div>

@@ -8,44 +8,28 @@ import io
 import logging
 import threading
 from contextlib import asynccontextmanager
-from datetime import date, datetime
+from datetime import date
 
-import numpy as np
 from fastapi import FastAPI, File, Form, Request, UploadFile
 from fastapi.responses import HTMLResponse, RedirectResponse, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from .. import paths
-from ..algorithm.store import current_set, load_set, regenerate, target_draw
-from ..analysis.core import WINDOW_CHOICES, apply_window
-from ..analysis.metrics import (
-    DECADE_LABELS,
-    frequency,
-    gaps,
-    hot_cold,
-    pair_matrix,
-    randomness_check,
-    structure,
-    structure_summary,
-    supp_frequency,
-)
-from ..backtest.prizes import DIVISION_LABELS, any_prize_probability, division
-from ..backtest.tracking import live_history, live_totals
+from ..algorithm.store import current_set, load_set, regenerate, target_draw, weekly_set
+from ..analysis.core import WINDOW_CHOICES
 from ..backtest.walkforward import run_backtest
 from ..config import DEFAULT_WEIGHTS, Settings, load_settings, save_settings
-from ..data.dates import most_recent_draw_date, now_sydney, upcoming_draw_date
+from ..data.dates import most_recent_draw_date, now_sydney
 from ..data.db import Database
 from ..data.importer import import_csv_text
 from ..data.validate import DrawValidationError, make_draw
-from ..fetch.base import THELOTT_VERIFY_URL
 from ..fetch.service import is_stale
 from ..pipeline import init_db, refresh_running, run_refresh
+from .views import analysis_context, backtest_context, make_env, this_week_context
 
 log = logging.getLogger("lottolens.web")
 
-GAMBLING_HELP_URL = "https://www.gamblinghelponline.org.au"
-GAMBLING_HELP_PHONE = "1800 858 858"
 CHECK_INTERVAL_S = 3600
 
 
@@ -76,16 +60,7 @@ def create_app(db: Database | None = None, background: bool = True) -> FastAPI:
 
     app = FastAPI(title="LottoLens", lifespan=lifespan, docs_url=None, redoc_url=None)
     app.mount("/static", StaticFiles(directory=paths.STATIC_DIR), name="static")
-    templates = Jinja2Templates(directory=paths.TEMPLATES_DIR)
-    templates.env.globals.update(
-        gambling_help_url=GAMBLING_HELP_URL,
-        gambling_help_phone=GAMBLING_HELP_PHONE,
-        thelott_url=THELOTT_VERIFY_URL,
-        division_labels=DIVISION_LABELS,
-    )
-    templates.env.filters["nicedate"] = lambda d: (
-        (date.fromisoformat(d) if isinstance(d, str) else d).strftime("%a %-d %b %Y") if d else ""
-    )
+    templates = Jinja2Templates(env=make_env(static_site=False))
 
     def render(request: Request, name: str, **ctx) -> HTMLResponse:
         ctx.setdefault("active", name.split(".")[0])
@@ -93,44 +68,9 @@ def create_app(db: Database | None = None, background: bool = True) -> FastAPI:
         return templates.TemplateResponse(request, name, ctx)
 
     # ------------------------------------------------------------------ This Week
-    def last_draw_review(db: Database) -> dict | None:
-        latest = db.latest_draw_date()
-        if latest is None:
-            return None
-        draw = db.get_draw(latest)
-        winners = {draw[f"n{i}"] for i in range(1, 7)}
-        supps = {draw["supp1"], draw["supp2"]} if draw["supp1"] is not None else set()
-        live = [h for h in live_history(db, limit=1) if h["draw_date"] == latest.isoformat()]
-        if live:
-            games, pre_draw = live[0]["games"], True
-        else:
-            stored = load_set(db, latest)
-            if stored is None:
-                games, pre_draw = [], None
-            else:
-                games = []
-                for c in stored.combos:
-                    m = len(set(c.numbers) & winners)
-                    sm = len(set(c.numbers) & supps) if supps else None
-                    games.append({"numbers": list(c.numbers), "matches": m, "supp_matches": sm, "division": division(m, sm)})
-                pre_draw = False
-        return {"draw": draw, "winners": winners, "supps": supps, "games": games, "pre_draw": pre_draw}
-
     @app.get("/", response_class=HTMLResponse)
     def this_week(request: Request):
-        db = get_db()
-        settings = load_settings(db)
-        s = current_set(db, settings)
-        target = target_draw(db)
-        upcoming = upcoming_draw_date()
-        history = live_history(db)
-        return render(
-            request, "this_week.html",
-            sset=s, target=target, upcoming=upcoming,
-            stale=target is not None and target < upcoming,
-            review=last_draw_review(db), live=live_totals(history),
-            odds_any=1 / any_prize_probability(),
-        )
+        return render(request, "this_week.html", **this_week_context(get_db()))
 
     @app.post("/regenerate", response_class=HTMLResponse)
     def do_regenerate(request: Request):
@@ -139,8 +79,6 @@ def create_app(db: Database | None = None, background: bool = True) -> FastAPI:
 
     @app.post("/weekly", response_class=HTMLResponse)
     def back_to_weekly(request: Request):
-        from ..algorithm.store import weekly_set
-
         return render(request, "_combos.html", sset=weekly_set(get_db(), load_settings(get_db())))
 
     @app.get("/export.csv")
@@ -160,49 +98,7 @@ def create_app(db: Database | None = None, background: bool = True) -> FastAPI:
     # ------------------------------------------------------------------ Analysis
     @app.get("/analysis", response_class=HTMLResponse)
     def analysis(request: Request, window: str | None = None):
-        db = get_db()
-        settings = load_settings(db)
-        window = window if window in WINDOW_CHOICES else settings.window
-        df = apply_window(db.draws_df(), window)
-        all_df = db.draws_df()
-        freq = frequency(df)
-        sfreq, supp_draws = supp_frequency(df)
-        hc = hot_cold(df)
-        g = gaps(df)
-        pm = pair_matrix(df)
-        st = structure(df)
-        summary = structure_summary(df)
-        chi = randomness_check(df)
-        bins = list(range(20, 261, 10))
-        hist, _ = np.histogram(st["sum"], bins=bins)
-        triu = pm[np.triu_indices(45, 1)]
-        top_pairs = sorted(
-            ((int(pm[i, j]), i + 1, j + 1) for i in range(45) for j in range(i + 1, 45)), reverse=True
-        )[:10]
-        data = {
-            "numbers": list(range(1, 46)),
-            "freq": freq.tolist(),
-            "expected_freq": len(df) * 6 / 45,
-            "supp_freq": sfreq.tolist(),
-            "supp_draws": supp_draws,
-            "hot": {str(lb): hc[f"z_{lb}"].round(2).tolist() for lb in (10, 25, 50)},
-            "hot_counts": {str(lb): hc[f"count_{lb}"].tolist() for lb in (10, 25, 50)},
-            "current_gap": g["current_gap"].tolist(),
-            "avg_gap": g["avg_gap"].round(2).fillna(0).tolist(),
-            "pairs": pm.tolist(),
-            "pair_max": int(triu.max()) if len(triu) else 0,
-            "sum_bins": [f"{b}-{b + 9}" for b in bins[:-1]],
-            "sum_hist": hist.tolist(),
-            "odd": [summary.get("odd_even", {}).get(k, 0) for k in range(7)],
-            "low": [summary.get("low_high", {}).get(k, 0) for k in range(7)],
-            "decade_labels": DECADE_LABELS,
-            "decade_share": list(summary.get("decade_share", {}).values()),
-        }
-        return render(
-            request, "analysis.html", window=window, windows=list(WINDOW_CHOICES), draws=len(df),
-            first=df["draw_date"].iloc[0] if len(df) else None, last=df["draw_date"].iloc[-1] if len(df) else None,
-            data=data, chi=chi, summary=summary, top_pairs=top_pairs, total_draws=len(all_df),
-        )
+        return render(request, "analysis.html", **analysis_context(get_db(), window))
 
     # ------------------------------------------------------------------ History
     @app.get("/history", response_class=HTMLResponse)
@@ -285,11 +181,7 @@ def create_app(db: Database | None = None, background: bool = True) -> FastAPI:
     # ------------------------------------------------------------------ Backtest
     @app.get("/backtest", response_class=HTMLResponse)
     def backtest_page(request: Request):
-        db = get_db()
-        result = db.kv_get("backtest:last")
-        settings = load_settings(db)
-        return render(request, "backtest.html", result=result, bt=state["backtest"],
-                      settings_changed=bool(result) and result["params_hash"] != settings.params_hash())
+        return render(request, "backtest.html", bt=state["backtest"], **backtest_context(get_db()))
 
     def _run_backtest(n_draws: int, trials: int):
         bt = state["backtest"]

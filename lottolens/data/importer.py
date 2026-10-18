@@ -30,7 +30,7 @@ class ImportReport:
 
 
 def parse_csv(text: str, source: str) -> tuple[list[Draw], list[str]]:
-    """Parse CSV text. Accepts optional columns draw_number, supp1, supp2."""
+    """Parse CSV text. Accepts optional columns draw_number, supp1, supp2, source."""
     reader = csv.DictReader(io.StringIO(text.lstrip("﻿")))
     if reader.fieldnames is None:
         return [], ["file is empty"]
@@ -49,7 +49,7 @@ def parse_csv(text: str, source: str) -> tuple[list[Draw], list[str]]:
                     [row[f"n{i}"] for i in range(1, 7)],
                     supps,
                     draw_number=row.get("draw_number") or None,
-                    source=source,
+                    source=row.get("source") or source,
                 )
             )
         except DrawValidationError as exc:

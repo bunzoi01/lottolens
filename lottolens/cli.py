@@ -1,4 +1,4 @@
-"""Command line: python -m lottolens refresh | suggest | backtest | import <csv> | serve"""
+"""Command line: python -m lottolens refresh | suggest | backtest | import <csv> | serve | publish | cloud"""
 
 from __future__ import annotations
 
@@ -81,6 +81,26 @@ def cmd_import(args) -> int:
     return 1 if rep.errors else 0
 
 
+def cmd_publish(args) -> int:
+    from pathlib import Path
+
+    from .site import build_site
+
+    files = build_site(_db(), Path(args.out))
+    print(f"Static site written to {args.out} ({len(files)} files). Preview: python -m http.server -d {args.out}")
+    return 0
+
+
+def cmd_cloud(args) -> int:
+    from pathlib import Path
+
+    from .cloud import run_cloud
+
+    rep = run_cloud(Path(args.data), Path(args.out), fetch=not args.no_fetch)
+    print(rep.markdown())
+    return 0  # errors are reported as warnings; the existing data still gets published
+
+
 def cmd_serve(args) -> int:
     import threading
 
@@ -121,6 +141,16 @@ def main(argv: list[str] | None = None) -> int:
     i = sub.add_parser("import", help="import a CSV of draws")
     i.add_argument("csv")
     i.set_defaults(func=cmd_import)
+
+    pb = sub.add_parser("publish", help="build the read-only static site (PWA) from the local database")
+    pb.add_argument("--out", default="_site")
+    pb.set_defaults(func=cmd_publish)
+
+    c = sub.add_parser("cloud", help="weekly GitHub Actions run: data/ -> refresh -> data/ + static site")
+    c.add_argument("--data", default="data")
+    c.add_argument("--out", default="_site")
+    c.add_argument("--no-fetch", action="store_true", help="skip fetching (rebuild from data/ only)")
+    c.set_defaults(func=cmd_cloud)
 
     v = sub.add_parser("serve", help="run the web UI on 127.0.0.1")
     v.add_argument("--port", type=int, default=PORT)

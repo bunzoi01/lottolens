@@ -1,0 +1,70 @@
+# Weekly LottoLens update: fetch the Saturday result, score last week's picks,
+# build next week's picks and the backtest, commit data/ and publish the
+# read-only PWA to GitHub Pages. Runs in the cloud, so the Mac can be off.
+name: Weekly update
+
+on:
+  schedule:
+    # Sunday 10:00 Sydney, with a Monday 10:00 retry. Cron is UTC and Sydney is
+    # UTC+11 (daylight saving, Oct-Apr) or UTC+10 (Apr-Oct), so list both.
+    - cron: "0 23 * * 6,0"   # Sun/Mon 10:00 AEDT
+    - cron: "0 0 * * 0,1"    # Sun/Mon 10:00 AEST
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths-ignore: ["data/**", "docs/**", "*.md"]
+
+permissions:
+  contents: write   # commit data/ back to the repo
+  pages: write      # deploy to GitHub Pages
+  id-token: write
+
+concurrency:
+  group: weekly-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    env:
+      LOTTOLENS_HOME: ${{ runner.temp }}/lottolens
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: uv sync --frozen
+
+      - name: Test
+        run: uv run pytest -q
+
+      - name: Refresh, backtest and build site
+        run: uv run python -m lottolens cloud --data data --out _site
+
+      - name: Commit updated data
+        run: |
+          git config user.name "lottolens-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/draws.csv data/suggestions.csv data/backtest.json
+          if git diff --cached --quiet; then
+            echo "No data changes."
+          else
+            git commit -m "data: weekly update $(TZ=Australia/Sydney date +%Y-%m-%d)"
+            git push
+          fi
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deploy
+        uses: actions/deploy-pages@v4

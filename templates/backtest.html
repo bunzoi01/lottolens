@@ -8,6 +8,7 @@
   </div>
 </div>
 
+{% if not static_site %}
 <section class="card">
   <form hx-post="/backtest/run" hx-target="#bt-progress" class="row">
     <div class="field"><label for="bt-n">Draws to test</label><input id="bt-n" name="n_draws" type="number" value="104" min="10" max="1000"></div>
@@ -17,6 +18,7 @@
   <div id="bt-progress">{% if bt.running %}{% include "_backtest_progress.html" %}{% endif %}</div>
   {% if bt.error %}<div class="notice bad small">Backtest failed: {{ bt.error }}</div>{% endif %}
 </section>
+{% endif %}
 
 {% if result %}
   {% set a = result.algo %}{% set r = result.random %}{% set t = result.theory %}
@@ -77,7 +79,7 @@
   </section>
   <script type="application/json" id="bt-data">{{ {'per_draw': result.per_draw, 'algo': a.divisions, 'random': r.divisions}|tojson }}</script>
 {% else %}
-  <p class="muted">No backtest yet. Run one above; the default takes about 15 seconds.</p>
+  <p class="muted">No backtest yet.{% if not static_site %} Run one above; the default takes about 15 seconds.{% endif %}</p>
 {% endif %}
 {% endblock %}
-{% block scripts %}<script defer src="/static/backtest.js"></script>{% endblock %}
+{% block scripts %}<script defer src="{{ asset('backtest.js') }}"></script>{% endblock %}

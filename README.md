@@ -43,7 +43,43 @@ PY="$HOME/Library/Application Support/LottoLens/venv/bin/python"
 "$PY" -m lottolens backtest           # walk-forward backtest (--draws 104 --trials 200)
 "$PY" -m lottolens import file.csv    # import draws from a CSV
 "$PY" -m lottolens serve              # run the web UI (--open to open the browser)
+"$PY" -m lottolens publish            # build the read-only phone site into _site/
+"$PY" -m lottolens cloud              # what the weekly GitHub Actions run does
 ```
+
+## iPhone app (GitHub Pages)
+
+A read-only copy of LottoLens is published to GitHub Pages every week, so it works on your phone
+anywhere, on Wi-Fi or mobile data, with your Mac switched off:
+
+**<https://bunzoi01.github.io/lottolens/>**
+
+To install it: open the link in **Safari**, tap **Share**, then **Add to Home Screen**. It opens
+full-screen like an app. It also keeps the last copy it loaded, so you can still see this week's
+picks with no signal.
+
+How it stays up to date: `.github/workflows/weekly-update.yml` runs on GitHub's servers every
+Sunday at 10:00 Sydney time, with a Monday retry. Each run:
+
+1. rebuilds a database from `data/draws.csv`, `data/suggestions.csv` and `data/backtest.json`;
+2. fetches only the new result from au.lottonumbers.com (same polite rules as the Mac app);
+3. scores last week's picks, builds next week's, and re-runs the backtest;
+4. commits the updated `data/` files back to the repo;
+5. publishes the site.
+
+The workflow also runs when code is pushed, and you can start it by hand from the **Actions** tab.
+
+| | Phone (GitHub Pages) | Mac app |
+|---|---|---|
+| Works with the Mac off | Yes | No |
+| This Week, Analysis, History, Backtest | Yes (read-only) | Yes |
+| Regenerate, Settings, Fetch, CSV import, manual entry | No | Yes |
+| Who can see it | **Anyone with the link** (public). It asks search engines not to index it. | Only this Mac |
+
+Because the workflow commits to `main` each week, run `git pull` before you push your own changes.
+To rebuild the site from your Mac's database instead, run
+`python -m lottolens publish --out _site` and preview it with
+`python -m http.server -d _site`.
 
 ## Weekly refresh
 
@@ -155,6 +191,9 @@ lottolens/
   backtest/   prize divisions, walk-forward backtest, live tracking
   scheduler/  Sydney-time gate for launchd, macOS notifications
   web/        FastAPI app (HTMX + Chart.js, vendored in static/vendor)
+  site.py     static PWA build for GitHub Pages; cloud.py = the weekly Actions run
   cli.py, pipeline.py, config.py, paths.py
+.github/workflows/weekly-update.yml   weekly cloud update + Pages deploy
+data/       draws.csv, suggestions.csv, backtest.json (updated weekly by the workflow)
 templates/  static/  tests/ (fixtures = saved HTML pages)  data/
 ```

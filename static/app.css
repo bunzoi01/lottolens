@@ -169,3 +169,16 @@ details summary { cursor: pointer; color: var(--ink-2); font-size: .85rem; margi
 .htmx-request .htmx-indicator, .htmx-request.htmx-indicator { display: inline; }
 .odds-note { text-align: right; }
 @media (max-width: 640px) { .odds-note { text-align: left; } }
+
+/* static (GitHub Pages) copy */
+.updated-bar { background: var(--surface-2); color: var(--ink-2); padding: .4rem 1.25rem; }
+@media (display-mode: standalone) {
+  .topbar { padding-top: max(.75rem, env(safe-area-inset-top)); }
+  main, .footer { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+  .footer { padding-bottom: max(1.5rem, env(safe-area-inset-bottom)); }
+}
+@media (max-width: 640px) {
+  .topbar { gap: .5rem; padding: .6rem 16px; }
+  nav a { padding: .45rem .6rem; }
+  .btn { padding: .55rem .9rem; }
+}
