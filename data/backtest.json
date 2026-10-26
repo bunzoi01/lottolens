@@ -15,18 +15,18 @@
  },
  "algo_version": "1.0",
  "combos_per_draw": 10,
- "created_at": "2026-10-18T04:03:33+00:00",
+ "created_at": "2026-10-26T00:59:18+00:00",
  "draws": 104,
- "empirical_p": 0.355,
- "first_draw": "2024-10-26",
- "last_draw": "2026-10-17",
+ "empirical_p": 0.34,
+ "first_draw": "2024-11-02",
+ "last_draw": "2026-10-24",
  "params_hash": "2ab681864284",
  "per_draw": [
   {
    "algo_best_matches": 2,
    "algo_cum": 0,
    "algo_wins": 0,
-   "draw_date": "2024-10-26",
+   "draw_date": "2024-11-02",
    "random_cum_mean": 0.09,
    "random_cum_p05": 0.0,
    "random_cum_p95": 1.0,
@@ -36,200 +36,190 @@
    "algo_best_matches": 2,
    "algo_cum": 0,
    "algo_wins": 0,
-   "draw_date": "2024-11-02",
-   "random_cum_mean": 0.215,
-   "random_cum_p05": 0.0,
-   "random_cum_p95": 1.0,
-   "random_mean_wins": 0.125
-  },
-  {
-   "algo_best_matches": 2,
-   "algo_cum": 0,
-   "algo_wins": 0,
    "draw_date": "2024-11-09",
-   "random_cum_mean": 0.34,
+   "random_cum_mean": 0.225,
    "random_cum_p05": 0.0,
    "random_cum_p95": 1.0,
-   "random_mean_wins": 0.125
+   "random_mean_wins": 0.135
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 0,
    "algo_wins": 0,
    "draw_date": "2024-11-16",
-   "random_cum_mean": 0.48,
+   "random_cum_mean": 0.325,
    "random_cum_p05": 0.0,
-   "random_cum_p95": 2.0,
-   "random_mean_wins": 0.14
+   "random_cum_p95": 1.0,
+   "random_mean_wins": 0.1
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 0,
    "algo_wins": 0,
    "draw_date": "2024-11-23",
-   "random_cum_mean": 0.56,
+   "random_cum_mean": 0.415,
    "random_cum_p05": 0.0,
    "random_cum_p95": 2.0,
-   "random_mean_wins": 0.08
+   "random_mean_wins": 0.09
   },
   {
    "algo_best_matches": 3,
    "algo_cum": 0,
    "algo_wins": 0,
    "draw_date": "2024-11-30",
-   "random_cum_mean": 0.655,
+   "random_cum_mean": 0.53,
    "random_cum_p05": 0.0,
    "random_cum_p95": 2.0,
-   "random_mean_wins": 0.095
+   "random_mean_wins": 0.115
   },
   {
    "algo_best_matches": 1,
    "algo_cum": 0,
    "algo_wins": 0,
    "draw_date": "2024-12-07",
-   "random_cum_mean": 0.775,
+   "random_cum_mean": 0.635,
    "random_cum_p05": 0.0,
    "random_cum_p95": 2.0,
-   "random_mean_wins": 0.12
+   "random_mean_wins": 0.105
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 0,
    "algo_wins": 0,
    "draw_date": "2024-12-14",
-   "random_cum_mean": 0.875,
+   "random_cum_mean": 0.755,
    "random_cum_p05": 0.0,
-   "random_cum_p95": 3.0,
-   "random_mean_wins": 0.1
+   "random_cum_p95": 2.0,
+   "random_mean_wins": 0.12
   },
   {
    "algo_best_matches": 1,
    "algo_cum": 0,
    "algo_wins": 0,
    "draw_date": "2024-12-21",
-   "random_cum_mean": 0.995,
+   "random_cum_mean": 0.845,
    "random_cum_p05": 0.0,
-   "random_cum_p95": 3.0,
-   "random_mean_wins": 0.12
+   "random_cum_p95": 2.0,
+   "random_mean_wins": 0.09
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 0,
    "algo_wins": 0,
    "draw_date": "2024-12-28",
-   "random_cum_mean": 1.125,
+   "random_cum_mean": 0.95,
    "random_cum_p05": 0.0,
    "random_cum_p95": 3.0,
-   "random_mean_wins": 0.13
+   "random_mean_wins": 0.105
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 0,
    "algo_wins": 0,
    "draw_date": "2025-01-04",
-   "random_cum_mean": 1.255,
+   "random_cum_mean": 1.04,
    "random_cum_p05": 0.0,
    "random_cum_p95": 3.0,
-   "random_mean_wins": 0.13
+   "random_mean_wins": 0.09
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 2,
    "algo_wins": 2,
    "draw_date": "2025-01-11",
-   "random_cum_mean": 1.4,
+   "random_cum_mean": 1.19,
    "random_cum_p05": 0.0,
    "random_cum_p95": 3.0,
-   "random_mean_wins": 0.145
+   "random_mean_wins": 0.15
   },
   {
    "algo_best_matches": 3,
    "algo_cum": 3,
    "algo_wins": 1,
    "draw_date": "2025-01-18",
-   "random_cum_mean": 1.51,
+   "random_cum_mean": 1.325,
    "random_cum_p05": 0.0,
    "random_cum_p95": 3.0,
-   "random_mean_wins": 0.11
+   "random_mean_wins": 0.135
   },
   {
    "algo_best_matches": 3,
    "algo_cum": 3,
    "algo_wins": 0,
    "draw_date": "2025-01-25",
-   "random_cum_mean": 1.615,
+   "random_cum_mean": 1.46,
    "random_cum_p05": 0.0,
-   "random_cum_p95": 4.0,
-   "random_mean_wins": 0.105
+   "random_cum_p95": 3.0,
+   "random_mean_wins": 0.135
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 3,
    "algo_wins": 0,
    "draw_date": "2025-02-01",
-   "random_cum_mean": 1.745,
+   "random_cum_mean": 1.565,
    "random_cum_p05": 0.0,
-   "random_cum_p95": 4.0,
-   "random_mean_wins": 0.13
-  },
-  {
-   "algo_best_matches": 2,
-   "algo_cum": 3,
-   "algo_wins": 0,
-   "draw_date": "2025-02-08",
-   "random_cum_mean": 1.9,
-   "random_cum_p05": 0.0,
-   "random_cum_p95": 4.0,
-   "random_mean_wins": 0.155
-  },
-  {
-   "algo_best_matches": 2,
-   "algo_cum": 3,
-   "algo_wins": 0,
-   "draw_date": "2025-02-15",
-   "random_cum_mean": 2.03,
-   "random_cum_p05": 0.0,
-   "random_cum_p95": 4.0,
-   "random_mean_wins": 0.13
-  },
-  {
-   "algo_best_matches": 2,
-   "algo_cum": 3,
-   "algo_wins": 0,
-   "draw_date": "2025-02-22",
-   "random_cum_mean": 2.085,
-   "random_cum_p05": 0.0,
-   "random_cum_p95": 4.0,
-   "random_mean_wins": 0.055
-  },
-  {
-   "algo_best_matches": 3,
-   "algo_cum": 3,
-   "algo_wins": 0,
-   "draw_date": "2025-03-01",
-   "random_cum_mean": 2.195,
-   "random_cum_p05": 0.0,
-   "random_cum_p95": 5.0,
-   "random_mean_wins": 0.11
-  },
-  {
-   "algo_best_matches": 2,
-   "algo_cum": 3,
-   "algo_wins": 0,
-   "draw_date": "2025-03-08",
-   "random_cum_mean": 2.3,
-   "random_cum_p05": 0.0,
-   "random_cum_p95": 5.0,
+   "random_cum_p95": 3.0,
    "random_mean_wins": 0.105
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 3,
    "algo_wins": 0,
-   "draw_date": "2025-03-15",
-   "random_cum_mean": 2.415,
+   "draw_date": "2025-02-08",
+   "random_cum_mean": 1.67,
    "random_cum_p05": 0.0,
-   "random_cum_p95": 5.0,
+   "random_cum_p95": 4.0,
+   "random_mean_wins": 0.105
+  },
+  {
+   "algo_best_matches": 2,
+   "algo_cum": 3,
+   "algo_wins": 0,
+   "draw_date": "2025-02-15",
+   "random_cum_mean": 1.75,
+   "random_cum_p05": 0.0,
+   "random_cum_p95": 4.0,
+   "random_mean_wins": 0.08
+  },
+  {
+   "algo_best_matches": 2,
+   "algo_cum": 3,
+   "algo_wins": 0,
+   "draw_date": "2025-02-22",
+   "random_cum_mean": 1.905,
+   "random_cum_p05": 0.0,
+   "random_cum_p95": 4.0,
+   "random_mean_wins": 0.155
+  },
+  {
+   "algo_best_matches": 3,
+   "algo_cum": 3,
+   "algo_wins": 0,
+   "draw_date": "2025-03-01",
+   "random_cum_mean": 1.985,
+   "random_cum_p05": 0.0,
+   "random_cum_p95": 4.0,
+   "random_mean_wins": 0.08
+  },
+  {
+   "algo_best_matches": 2,
+   "algo_cum": 3,
+   "algo_wins": 0,
+   "draw_date": "2025-03-08",
+   "random_cum_mean": 2.135,
+   "random_cum_p05": 0.0,
+   "random_cum_p95": 4.0,
+   "random_mean_wins": 0.15
+  },
+  {
+   "algo_best_matches": 2,
+   "algo_cum": 3,
+   "algo_wins": 0,
+   "draw_date": "2025-03-15",
+   "random_cum_mean": 2.25,
+   "random_cum_p05": 0.0,
+   "random_cum_p95": 4.049999999999983,
    "random_mean_wins": 0.115
   },
   {
@@ -237,7 +227,17 @@
    "algo_cum": 4,
    "algo_wins": 1,
    "draw_date": "2025-03-22",
-   "random_cum_mean": 2.545,
+   "random_cum_mean": 2.385,
+   "random_cum_p05": 0.0,
+   "random_cum_p95": 5.0,
+   "random_mean_wins": 0.135
+  },
+  {
+   "algo_best_matches": 2,
+   "algo_cum": 4,
+   "algo_wins": 0,
+   "draw_date": "2025-03-29",
+   "random_cum_mean": 2.515,
    "random_cum_p05": 0.0,
    "random_cum_p95": 5.0,
    "random_mean_wins": 0.13
@@ -246,128 +246,148 @@
    "algo_best_matches": 2,
    "algo_cum": 4,
    "algo_wins": 0,
-   "draw_date": "2025-03-29",
-   "random_cum_mean": 2.63,
+   "draw_date": "2025-04-05",
+   "random_cum_mean": 2.575,
    "random_cum_p05": 0.0,
    "random_cum_p95": 5.0,
-   "random_mean_wins": 0.085
-  },
-  {
-   "algo_best_matches": 2,
-   "algo_cum": 4,
-   "algo_wins": 0,
-   "draw_date": "2025-04-05",
-   "random_cum_mean": 2.75,
-   "random_cum_p05": 0.9500000000000011,
-   "random_cum_p95": 5.0,
-   "random_mean_wins": 0.12
+   "random_mean_wins": 0.06
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 4,
    "algo_wins": 0,
    "draw_date": "2025-04-12",
-   "random_cum_mean": 2.865,
-   "random_cum_p05": 1.0,
-   "random_cum_p95": 6.0,
-   "random_mean_wins": 0.115
+   "random_cum_mean": 2.695,
+   "random_cum_p05": 0.0,
+   "random_cum_p95": 5.0,
+   "random_mean_wins": 0.12
   },
   {
    "algo_best_matches": 1,
    "algo_cum": 4,
    "algo_wins": 0,
    "draw_date": "2025-04-19",
-   "random_cum_mean": 2.98,
-   "random_cum_p05": 1.0,
-   "random_cum_p95": 6.0,
-   "random_mean_wins": 0.115
+   "random_cum_mean": 2.8,
+   "random_cum_p05": 0.0,
+   "random_cum_p95": 5.049999999999983,
+   "random_mean_wins": 0.105
   },
   {
    "algo_best_matches": 3,
    "algo_cum": 4,
    "algo_wins": 0,
    "draw_date": "2025-04-26",
-   "random_cum_mean": 3.1,
-   "random_cum_p05": 1.0,
-   "random_cum_p95": 6.0,
-   "random_mean_wins": 0.12
+   "random_cum_mean": 2.885,
+   "random_cum_p05": 0.9500000000000011,
+   "random_cum_p95": 5.049999999999983,
+   "random_mean_wins": 0.085
   },
   {
    "algo_best_matches": 3,
    "algo_cum": 4,
    "algo_wins": 0,
    "draw_date": "2025-05-03",
-   "random_cum_mean": 3.185,
+   "random_cum_mean": 2.985,
    "random_cum_p05": 1.0,
    "random_cum_p95": 6.0,
-   "random_mean_wins": 0.085
+   "random_mean_wins": 0.1
   },
   {
    "algo_best_matches": 3,
    "algo_cum": 4,
    "algo_wins": 0,
    "draw_date": "2025-05-10",
-   "random_cum_mean": 3.27,
+   "random_cum_mean": 3.095,
    "random_cum_p05": 1.0,
    "random_cum_p95": 6.0,
-   "random_mean_wins": 0.085
+   "random_mean_wins": 0.11
   },
   {
    "algo_best_matches": 1,
    "algo_cum": 4,
    "algo_wins": 0,
    "draw_date": "2025-05-17",
-   "random_cum_mean": 3.41,
+   "random_cum_mean": 3.22,
    "random_cum_p05": 1.0,
-   "random_cum_p95": 6.049999999999983,
-   "random_mean_wins": 0.14
+   "random_cum_p95": 6.0,
+   "random_mean_wins": 0.125
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 4,
    "algo_wins": 0,
    "draw_date": "2025-05-24",
-   "random_cum_mean": 3.55,
+   "random_cum_mean": 3.33,
    "random_cum_p05": 1.0,
-   "random_cum_p95": 7.0,
-   "random_mean_wins": 0.14
+   "random_cum_p95": 6.0,
+   "random_mean_wins": 0.11
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 4,
    "algo_wins": 0,
    "draw_date": "2025-05-31",
-   "random_cum_mean": 3.655,
+   "random_cum_mean": 3.425,
    "random_cum_p05": 1.0,
-   "random_cum_p95": 7.0,
-   "random_mean_wins": 0.105
+   "random_cum_p95": 6.0,
+   "random_mean_wins": 0.095
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 4,
    "algo_wins": 0,
    "draw_date": "2025-06-07",
-   "random_cum_mean": 3.77,
+   "random_cum_mean": 3.565,
    "random_cum_p05": 1.0,
-   "random_cum_p95": 7.0,
-   "random_mean_wins": 0.115
+   "random_cum_p95": 6.0,
+   "random_mean_wins": 0.14
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 4,
    "algo_wins": 0,
    "draw_date": "2025-06-14",
-   "random_cum_mean": 3.935,
+   "random_cum_mean": 3.69,
    "random_cum_p05": 1.0,
-   "random_cum_p95": 7.0,
-   "random_mean_wins": 0.165
+   "random_cum_p95": 6.049999999999983,
+   "random_mean_wins": 0.125
   },
   {
    "algo_best_matches": 3,
    "algo_cum": 5,
    "algo_wins": 1,
    "draw_date": "2025-06-21",
-   "random_cum_mean": 4.065,
+   "random_cum_mean": 3.82,
+   "random_cum_p05": 1.0,
+   "random_cum_p95": 7.0,
+   "random_mean_wins": 0.13
+  },
+  {
+   "algo_best_matches": 2,
+   "algo_cum": 5,
+   "algo_wins": 0,
+   "draw_date": "2025-06-28",
+   "random_cum_mean": 3.955,
+   "random_cum_p05": 1.0,
+   "random_cum_p95": 7.0,
+   "random_mean_wins": 0.135
+  },
+  {
+   "algo_best_matches": 2,
+   "algo_cum": 5,
+   "algo_wins": 0,
+   "draw_date": "2025-07-05",
+   "random_cum_mean": 4.08,
+   "random_cum_p05": 1.0,
+   "random_cum_p95": 7.0,
+   "random_mean_wins": 0.125
+  },
+  {
+   "algo_best_matches": 1,
+   "algo_cum": 5,
+   "algo_wins": 0,
+   "draw_date": "2025-07-12",
+   "random_cum_mean": 4.21,
    "random_cum_p05": 1.0,
    "random_cum_p95": 7.049999999999983,
    "random_mean_wins": 0.13
@@ -376,39 +396,9 @@
    "algo_best_matches": 2,
    "algo_cum": 5,
    "algo_wins": 0,
-   "draw_date": "2025-06-28",
-   "random_cum_mean": 4.18,
-   "random_cum_p05": 1.0,
-   "random_cum_p95": 8.0,
-   "random_mean_wins": 0.115
-  },
-  {
-   "algo_best_matches": 2,
-   "algo_cum": 5,
-   "algo_wins": 0,
-   "draw_date": "2025-07-05",
-   "random_cum_mean": 4.325,
-   "random_cum_p05": 1.0,
-   "random_cum_p95": 8.0,
-   "random_mean_wins": 0.145
-  },
-  {
-   "algo_best_matches": 1,
-   "algo_cum": 5,
-   "algo_wins": 0,
-   "draw_date": "2025-07-12",
-   "random_cum_mean": 4.425,
-   "random_cum_p05": 1.950000000000001,
-   "random_cum_p95": 8.0,
-   "random_mean_wins": 0.1
-  },
-  {
-   "algo_best_matches": 2,
-   "algo_cum": 5,
-   "algo_wins": 0,
    "draw_date": "2025-07-19",
-   "random_cum_mean": 4.555,
-   "random_cum_p05": 2.0,
+   "random_cum_mean": 4.34,
+   "random_cum_p05": 1.0,
    "random_cum_p95": 8.0,
    "random_mean_wins": 0.13
   },
@@ -417,157 +407,147 @@
    "algo_cum": 5,
    "algo_wins": 0,
    "draw_date": "2025-07-26",
-   "random_cum_mean": 4.715,
-   "random_cum_p05": 2.0,
+   "random_cum_mean": 4.465,
+   "random_cum_p05": 1.0,
    "random_cum_p95": 8.0,
-   "random_mean_wins": 0.16
+   "random_mean_wins": 0.125
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 5,
    "algo_wins": 0,
    "draw_date": "2025-08-02",
-   "random_cum_mean": 4.85,
-   "random_cum_p05": 2.0,
-   "random_cum_p95": 9.0,
-   "random_mean_wins": 0.135
+   "random_cum_mean": 4.605,
+   "random_cum_p05": 1.0,
+   "random_cum_p95": 8.0,
+   "random_mean_wins": 0.14
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 5,
    "algo_wins": 0,
    "draw_date": "2025-08-09",
-   "random_cum_mean": 4.995,
-   "random_cum_p05": 2.0,
-   "random_cum_p95": 9.0,
-   "random_mean_wins": 0.145
+   "random_cum_mean": 4.77,
+   "random_cum_p05": 1.950000000000001,
+   "random_cum_p95": 8.0,
+   "random_mean_wins": 0.165
   },
   {
    "algo_best_matches": 3,
    "algo_cum": 5,
    "algo_wins": 0,
    "draw_date": "2025-08-16",
-   "random_cum_mean": 5.095,
+   "random_cum_mean": 4.895,
    "random_cum_p05": 2.0,
-   "random_cum_p95": 9.0,
-   "random_mean_wins": 0.1
+   "random_cum_p95": 8.0,
+   "random_mean_wins": 0.125
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 5,
    "algo_wins": 0,
    "draw_date": "2025-08-23",
-   "random_cum_mean": 5.2,
+   "random_cum_mean": 5.015,
    "random_cum_p05": 2.0,
-   "random_cum_p95": 9.0,
-   "random_mean_wins": 0.105
+   "random_cum_p95": 8.049999999999983,
+   "random_mean_wins": 0.12
   },
   {
    "algo_best_matches": 1,
    "algo_cum": 5,
    "algo_wins": 0,
    "draw_date": "2025-08-30",
-   "random_cum_mean": 5.305,
+   "random_cum_mean": 5.095,
    "random_cum_p05": 2.0,
-   "random_cum_p95": 9.0,
-   "random_mean_wins": 0.105
+   "random_cum_p95": 8.049999999999983,
+   "random_mean_wins": 0.08
   },
   {
    "algo_best_matches": 3,
    "algo_cum": 5,
    "algo_wins": 0,
    "draw_date": "2025-09-06",
-   "random_cum_mean": 5.425,
+   "random_cum_mean": 5.205,
    "random_cum_p05": 2.0,
-   "random_cum_p95": 9.0,
-   "random_mean_wins": 0.12
+   "random_cum_p95": 8.049999999999983,
+   "random_mean_wins": 0.11
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 5,
    "algo_wins": 0,
    "draw_date": "2025-09-13",
-   "random_cum_mean": 5.555,
+   "random_cum_mean": 5.305,
    "random_cum_p05": 2.0,
-   "random_cum_p95": 9.049999999999983,
-   "random_mean_wins": 0.13
+   "random_cum_p95": 9.0,
+   "random_mean_wins": 0.1
   },
   {
    "algo_best_matches": 1,
    "algo_cum": 5,
    "algo_wins": 0,
    "draw_date": "2025-09-20",
-   "random_cum_mean": 5.63,
+   "random_cum_mean": 5.425,
    "random_cum_p05": 2.0,
-   "random_cum_p95": 10.0,
-   "random_mean_wins": 0.075
+   "random_cum_p95": 9.0,
+   "random_mean_wins": 0.12
   },
   {
    "algo_best_matches": 1,
    "algo_cum": 5,
    "algo_wins": 0,
    "draw_date": "2025-09-27",
-   "random_cum_mean": 5.77,
+   "random_cum_mean": 5.535,
    "random_cum_p05": 2.0,
-   "random_cum_p95": 10.0,
-   "random_mean_wins": 0.14
+   "random_cum_p95": 9.049999999999983,
+   "random_mean_wins": 0.11
   },
   {
    "algo_best_matches": 3,
    "algo_cum": 6,
    "algo_wins": 1,
    "draw_date": "2025-10-04",
-   "random_cum_mean": 5.97,
-   "random_cum_p05": 3.0,
-   "random_cum_p95": 10.049999999999983,
-   "random_mean_wins": 0.2
+   "random_cum_mean": 5.665,
+   "random_cum_p05": 2.0,
+   "random_cum_p95": 9.049999999999983,
+   "random_mean_wins": 0.13
   },
   {
    "algo_best_matches": 1,
    "algo_cum": 6,
    "algo_wins": 0,
    "draw_date": "2025-10-11",
-   "random_cum_mean": 6.065,
-   "random_cum_p05": 3.0,
-   "random_cum_p95": 10.049999999999983,
-   "random_mean_wins": 0.095
+   "random_cum_mean": 5.81,
+   "random_cum_p05": 2.0,
+   "random_cum_p95": 9.049999999999983,
+   "random_mean_wins": 0.145
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 6,
    "algo_wins": 0,
    "draw_date": "2025-10-18",
-   "random_cum_mean": 6.19,
-   "random_cum_p05": 3.0,
-   "random_cum_p95": 11.0,
-   "random_mean_wins": 0.125
+   "random_cum_mean": 5.9,
+   "random_cum_p05": 2.0,
+   "random_cum_p95": 10.0,
+   "random_mean_wins": 0.09
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 6,
    "algo_wins": 0,
    "draw_date": "2025-10-25",
-   "random_cum_mean": 6.315,
+   "random_cum_mean": 6.065,
    "random_cum_p05": 3.0,
-   "random_cum_p95": 11.0,
-   "random_mean_wins": 0.125
+   "random_cum_p95": 10.0,
+   "random_mean_wins": 0.165
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 6,
    "algo_wins": 0,
    "draw_date": "2025-11-01",
-   "random_cum_mean": 6.45,
-   "random_cum_p05": 3.0,
-   "random_cum_p95": 11.0,
-   "random_mean_wins": 0.135
-  },
-  {
-   "algo_best_matches": 2,
-   "algo_cum": 6,
-   "algo_wins": 0,
-   "draw_date": "2025-11-08",
-   "random_cum_mean": 6.56,
+   "random_cum_mean": 6.175,
    "random_cum_p05": 3.0,
    "random_cum_p95": 11.0,
    "random_mean_wins": 0.11
@@ -576,120 +556,130 @@
    "algo_best_matches": 2,
    "algo_cum": 6,
    "algo_wins": 0,
-   "draw_date": "2025-11-15",
-   "random_cum_mean": 6.7,
+   "draw_date": "2025-11-08",
+   "random_cum_mean": 6.295,
    "random_cum_p05": 3.0,
    "random_cum_p95": 11.0,
-   "random_mean_wins": 0.14
+   "random_mean_wins": 0.12
+  },
+  {
+   "algo_best_matches": 2,
+   "algo_cum": 6,
+   "algo_wins": 0,
+   "draw_date": "2025-11-15",
+   "random_cum_mean": 6.45,
+   "random_cum_p05": 3.0,
+   "random_cum_p95": 11.0,
+   "random_mean_wins": 0.155
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 6,
    "algo_wins": 0,
    "draw_date": "2025-11-22",
-   "random_cum_mean": 6.795,
+   "random_cum_mean": 6.575,
    "random_cum_p05": 3.0,
    "random_cum_p95": 11.0,
-   "random_mean_wins": 0.095
+   "random_mean_wins": 0.125
   },
   {
    "algo_best_matches": 3,
    "algo_cum": 6,
    "algo_wins": 0,
    "draw_date": "2025-11-29",
-   "random_cum_mean": 6.945,
+   "random_cum_mean": 6.68,
    "random_cum_p05": 3.0,
-   "random_cum_p95": 11.049999999999983,
-   "random_mean_wins": 0.15
+   "random_cum_p95": 11.0,
+   "random_mean_wins": 0.105
   },
   {
    "algo_best_matches": 3,
    "algo_cum": 6,
    "algo_wins": 0,
    "draw_date": "2025-12-06",
-   "random_cum_mean": 7.075,
+   "random_cum_mean": 6.795,
    "random_cum_p05": 3.0,
-   "random_cum_p95": 12.0,
-   "random_mean_wins": 0.13
+   "random_cum_p95": 11.0,
+   "random_mean_wins": 0.115
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 6,
    "algo_wins": 0,
    "draw_date": "2025-12-13",
-   "random_cum_mean": 7.225,
+   "random_cum_mean": 6.9,
    "random_cum_p05": 3.0,
-   "random_cum_p95": 12.0,
-   "random_mean_wins": 0.15
+   "random_cum_p95": 11.0,
+   "random_mean_wins": 0.105
   },
   {
    "algo_best_matches": 4,
    "algo_cum": 7,
    "algo_wins": 1,
    "draw_date": "2025-12-20",
-   "random_cum_mean": 7.34,
+   "random_cum_mean": 7.065,
    "random_cum_p05": 3.0,
-   "random_cum_p95": 12.0,
-   "random_mean_wins": 0.115
+   "random_cum_p95": 11.0,
+   "random_mean_wins": 0.165
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 7,
    "algo_wins": 0,
    "draw_date": "2025-12-27",
-   "random_cum_mean": 7.435,
+   "random_cum_mean": 7.18,
    "random_cum_p05": 3.0,
-   "random_cum_p95": 12.0,
-   "random_mean_wins": 0.095
+   "random_cum_p95": 11.0,
+   "random_mean_wins": 0.115
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 7,
    "algo_wins": 0,
    "draw_date": "2026-01-03",
-   "random_cum_mean": 7.515,
+   "random_cum_mean": 7.285,
    "random_cum_p05": 3.0,
-   "random_cum_p95": 12.0,
-   "random_mean_wins": 0.08
+   "random_cum_p95": 11.049999999999983,
+   "random_mean_wins": 0.105
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 7,
    "algo_wins": 0,
    "draw_date": "2026-01-10",
-   "random_cum_mean": 7.615,
+   "random_cum_mean": 7.395,
    "random_cum_p05": 3.0,
    "random_cum_p95": 12.0,
-   "random_mean_wins": 0.1
+   "random_mean_wins": 0.11
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 7,
    "algo_wins": 0,
    "draw_date": "2026-01-17",
-   "random_cum_mean": 7.705,
-   "random_cum_p05": 3.0,
-   "random_cum_p95": 13.0,
-   "random_mean_wins": 0.09
+   "random_cum_mean": 7.52,
+   "random_cum_p05": 4.0,
+   "random_cum_p95": 12.0,
+   "random_mean_wins": 0.125
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 7,
    "algo_wins": 0,
    "draw_date": "2026-01-24",
-   "random_cum_mean": 7.805,
-   "random_cum_p05": 3.0,
-   "random_cum_p95": 13.0,
-   "random_mean_wins": 0.1
+   "random_cum_mean": 7.605,
+   "random_cum_p05": 4.0,
+   "random_cum_p95": 12.0,
+   "random_mean_wins": 0.085
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 7,
    "algo_wins": 0,
    "draw_date": "2026-01-31",
-   "random_cum_mean": 7.925,
+   "random_cum_mean": 7.725,
    "random_cum_p05": 4.0,
-   "random_cum_p95": 13.0,
+   "random_cum_p95": 12.0,
    "random_mean_wins": 0.12
   },
   {
@@ -697,39 +687,39 @@
    "algo_cum": 7,
    "algo_wins": 0,
    "draw_date": "2026-02-07",
-   "random_cum_mean": 8.02,
+   "random_cum_mean": 7.825,
    "random_cum_p05": 4.0,
-   "random_cum_p95": 13.0,
-   "random_mean_wins": 0.095
+   "random_cum_p95": 12.0,
+   "random_mean_wins": 0.1
   },
   {
    "algo_best_matches": 1,
    "algo_cum": 7,
    "algo_wins": 0,
    "draw_date": "2026-02-14",
-   "random_cum_mean": 8.18,
+   "random_cum_mean": 7.955,
    "random_cum_p05": 4.0,
-   "random_cum_p95": 13.0,
-   "random_mean_wins": 0.16
-  },
-  {
-   "algo_best_matches": 2,
-   "algo_cum": 7,
-   "algo_wins": 0,
-   "draw_date": "2026-02-21",
-   "random_cum_mean": 8.31,
-   "random_cum_p05": 4.0,
-   "random_cum_p95": 14.0,
+   "random_cum_p95": 12.049999999999983,
    "random_mean_wins": 0.13
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 7,
    "algo_wins": 0,
-   "draw_date": "2026-02-28",
-   "random_cum_mean": 8.41,
+   "draw_date": "2026-02-21",
+   "random_cum_mean": 8.035,
    "random_cum_p05": 4.0,
-   "random_cum_p95": 14.0,
+   "random_cum_p95": 13.0,
+   "random_mean_wins": 0.08
+  },
+  {
+   "algo_best_matches": 2,
+   "algo_cum": 7,
+   "algo_wins": 0,
+   "draw_date": "2026-02-28",
+   "random_cum_mean": 8.135,
+   "random_cum_p05": 4.0,
+   "random_cum_p95": 13.0,
    "random_mean_wins": 0.1
   },
   {
@@ -737,39 +727,39 @@
    "algo_cum": 7,
    "algo_wins": 0,
    "draw_date": "2026-03-07",
-   "random_cum_mean": 8.515,
+   "random_cum_mean": 8.255,
    "random_cum_p05": 4.0,
-   "random_cum_p95": 14.0,
-   "random_mean_wins": 0.105
+   "random_cum_p95": 13.0,
+   "random_mean_wins": 0.12
   },
   {
    "algo_best_matches": 1,
    "algo_cum": 7,
    "algo_wins": 0,
    "draw_date": "2026-03-14",
-   "random_cum_mean": 8.625,
+   "random_cum_mean": 8.425,
    "random_cum_p05": 4.0,
-   "random_cum_p95": 14.0,
-   "random_mean_wins": 0.11
+   "random_cum_p95": 13.0,
+   "random_mean_wins": 0.17
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 7,
    "algo_wins": 0,
    "draw_date": "2026-03-21",
-   "random_cum_mean": 8.735,
+   "random_cum_mean": 8.48,
    "random_cum_p05": 4.0,
-   "random_cum_p95": 14.0,
-   "random_mean_wins": 0.11
+   "random_cum_p95": 13.0,
+   "random_mean_wins": 0.055
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 8,
    "algo_wins": 1,
    "draw_date": "2026-03-28",
-   "random_cum_mean": 8.815,
+   "random_cum_mean": 8.56,
    "random_cum_p05": 4.0,
-   "random_cum_p95": 14.0,
+   "random_cum_p95": 13.049999999999983,
    "random_mean_wins": 0.08
   },
   {
@@ -777,19 +767,19 @@
    "algo_cum": 8,
    "algo_wins": 0,
    "draw_date": "2026-04-04",
-   "random_cum_mean": 8.985,
+   "random_cum_mean": 8.745,
    "random_cum_p05": 4.0,
    "random_cum_p95": 14.0,
-   "random_mean_wins": 0.17
+   "random_mean_wins": 0.185
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 8,
    "algo_wins": 0,
    "draw_date": "2026-04-11",
-   "random_cum_mean": 9.095,
-   "random_cum_p05": 4.950000000000001,
-   "random_cum_p95": 14.049999999999983,
+   "random_cum_mean": 8.855,
+   "random_cum_p05": 4.0,
+   "random_cum_p95": 14.0,
    "random_mean_wins": 0.11
   },
   {
@@ -797,87 +787,107 @@
    "algo_cum": 9,
    "algo_wins": 1,
    "draw_date": "2026-04-18",
-   "random_cum_mean": 9.17,
-   "random_cum_p05": 5.0,
-   "random_cum_p95": 14.049999999999983,
-   "random_mean_wins": 0.075
+   "random_cum_mean": 8.955,
+   "random_cum_p05": 4.0,
+   "random_cum_p95": 14.0,
+   "random_mean_wins": 0.1
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 9,
    "algo_wins": 0,
    "draw_date": "2026-04-25",
-   "random_cum_mean": 9.325,
-   "random_cum_p05": 5.0,
-   "random_cum_p95": 15.0,
-   "random_mean_wins": 0.155
+   "random_cum_mean": 9.035,
+   "random_cum_p05": 4.0,
+   "random_cum_p95": 14.0,
+   "random_mean_wins": 0.08
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 9,
    "algo_wins": 0,
    "draw_date": "2026-05-02",
-   "random_cum_mean": 9.41,
-   "random_cum_p05": 5.0,
-   "random_cum_p95": 15.0,
-   "random_mean_wins": 0.085
+   "random_cum_mean": 9.165,
+   "random_cum_p05": 4.0,
+   "random_cum_p95": 14.0,
+   "random_mean_wins": 0.13
   },
   {
    "algo_best_matches": 1,
    "algo_cum": 10,
    "algo_wins": 1,
    "draw_date": "2026-05-09",
-   "random_cum_mean": 9.51,
-   "random_cum_p05": 5.0,
-   "random_cum_p95": 15.0,
-   "random_mean_wins": 0.1
+   "random_cum_mean": 9.29,
+   "random_cum_p05": 4.0,
+   "random_cum_p95": 14.0,
+   "random_mean_wins": 0.125
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 10,
    "algo_wins": 0,
    "draw_date": "2026-05-16",
-   "random_cum_mean": 9.655,
+   "random_cum_mean": 9.425,
    "random_cum_p05": 5.0,
    "random_cum_p95": 15.0,
-   "random_mean_wins": 0.145
+   "random_mean_wins": 0.135
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 10,
    "algo_wins": 0,
    "draw_date": "2026-05-23",
-   "random_cum_mean": 9.785,
+   "random_cum_mean": 9.53,
    "random_cum_p05": 5.0,
-   "random_cum_p95": 16.0,
-   "random_mean_wins": 0.13
+   "random_cum_p95": 15.0,
+   "random_mean_wins": 0.105
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 11,
    "algo_wins": 1,
    "draw_date": "2026-05-30",
-   "random_cum_mean": 9.905,
+   "random_cum_mean": 9.615,
    "random_cum_p05": 5.0,
-   "random_cum_p95": 16.0,
-   "random_mean_wins": 0.12
+   "random_cum_p95": 15.0,
+   "random_mean_wins": 0.085
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 11,
    "algo_wins": 0,
    "draw_date": "2026-06-06",
-   "random_cum_mean": 10.015,
+   "random_cum_mean": 9.745,
    "random_cum_p05": 5.0,
-   "random_cum_p95": 16.0,
-   "random_mean_wins": 0.11
+   "random_cum_p95": 15.049999999999983,
+   "random_mean_wins": 0.13
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 11,
    "algo_wins": 0,
    "draw_date": "2026-06-13",
-   "random_cum_mean": 10.12,
+   "random_cum_mean": 9.87,
+   "random_cum_p05": 5.0,
+   "random_cum_p95": 16.0,
+   "random_mean_wins": 0.125
+  },
+  {
+   "algo_best_matches": 2,
+   "algo_cum": 11,
+   "algo_wins": 0,
+   "draw_date": "2026-06-20",
+   "random_cum_mean": 9.985,
+   "random_cum_p05": 5.0,
+   "random_cum_p95": 16.0,
+   "random_mean_wins": 0.115
+  },
+  {
+   "algo_best_matches": 2,
+   "algo_cum": 11,
+   "algo_wins": 0,
+   "draw_date": "2026-06-27",
+   "random_cum_mean": 10.09,
    "random_cum_p05": 5.0,
    "random_cum_p95": 16.0,
    "random_mean_wins": 0.105
@@ -886,129 +896,129 @@
    "algo_best_matches": 2,
    "algo_cum": 11,
    "algo_wins": 0,
-   "draw_date": "2026-06-20",
-   "random_cum_mean": 10.255,
-   "random_cum_p05": 5.0,
-   "random_cum_p95": 16.049999999999983,
-   "random_mean_wins": 0.135
-  },
-  {
-   "algo_best_matches": 2,
-   "algo_cum": 11,
-   "algo_wins": 0,
-   "draw_date": "2026-06-27",
-   "random_cum_mean": 10.385,
-   "random_cum_p05": 6.0,
-   "random_cum_p95": 16.049999999999983,
-   "random_mean_wins": 0.13
-  },
-  {
-   "algo_best_matches": 2,
-   "algo_cum": 11,
-   "algo_wins": 0,
    "draw_date": "2026-07-04",
-   "random_cum_mean": 10.495,
-   "random_cum_p05": 6.0,
-   "random_cum_p95": 16.049999999999983,
-   "random_mean_wins": 0.11
+   "random_cum_mean": 10.22,
+   "random_cum_p05": 5.0,
+   "random_cum_p95": 16.0,
+   "random_mean_wins": 0.13
   },
   {
    "algo_best_matches": 3,
    "algo_cum": 12,
    "algo_wins": 1,
    "draw_date": "2026-07-11",
-   "random_cum_mean": 10.63,
-   "random_cum_p05": 6.0,
-   "random_cum_p95": 16.049999999999983,
-   "random_mean_wins": 0.135
+   "random_cum_mean": 10.325,
+   "random_cum_p05": 5.0,
+   "random_cum_p95": 16.0,
+   "random_mean_wins": 0.105
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 12,
    "algo_wins": 0,
    "draw_date": "2026-07-18",
-   "random_cum_mean": 10.75,
+   "random_cum_mean": 10.475,
    "random_cum_p05": 6.0,
-   "random_cum_p95": 16.049999999999983,
-   "random_mean_wins": 0.12
+   "random_cum_p95": 16.0,
+   "random_mean_wins": 0.15
   },
   {
    "algo_best_matches": 3,
    "algo_cum": 12,
    "algo_wins": 0,
    "draw_date": "2026-07-25",
-   "random_cum_mean": 10.865,
+   "random_cum_mean": 10.615,
    "random_cum_p05": 6.0,
    "random_cum_p95": 16.049999999999983,
-   "random_mean_wins": 0.115
+   "random_mean_wins": 0.14
   },
   {
    "algo_best_matches": 4,
    "algo_cum": 13,
    "algo_wins": 1,
    "draw_date": "2026-08-01",
-   "random_cum_mean": 10.975,
+   "random_cum_mean": 10.785,
    "random_cum_p05": 6.0,
-   "random_cum_p95": 16.049999999999983,
-   "random_mean_wins": 0.11
+   "random_cum_p95": 17.0,
+   "random_mean_wins": 0.17
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 13,
    "algo_wins": 0,
    "draw_date": "2026-08-08",
-   "random_cum_mean": 11.13,
+   "random_cum_mean": 10.87,
    "random_cum_p05": 6.0,
-   "random_cum_p95": 16.049999999999983,
-   "random_mean_wins": 0.155
+   "random_cum_p95": 17.0,
+   "random_mean_wins": 0.085
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 13,
    "algo_wins": 0,
    "draw_date": "2026-08-15",
-   "random_cum_mean": 11.25,
+   "random_cum_mean": 11.0,
    "random_cum_p05": 6.0,
    "random_cum_p95": 17.0,
-   "random_mean_wins": 0.12
+   "random_mean_wins": 0.13
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 13,
    "algo_wins": 0,
    "draw_date": "2026-08-22",
-   "random_cum_mean": 11.365,
-   "random_cum_p05": 7.0,
+   "random_cum_mean": 11.125,
+   "random_cum_p05": 6.0,
    "random_cum_p95": 17.0,
-   "random_mean_wins": 0.115
+   "random_mean_wins": 0.125
   },
   {
    "algo_best_matches": 3,
    "algo_cum": 13,
    "algo_wins": 0,
    "draw_date": "2026-08-29",
-   "random_cum_mean": 11.445,
-   "random_cum_p05": 7.0,
-   "random_cum_p95": 17.049999999999983,
-   "random_mean_wins": 0.08
+   "random_cum_mean": 11.21,
+   "random_cum_p05": 6.0,
+   "random_cum_p95": 17.0,
+   "random_mean_wins": 0.085
   },
   {
    "algo_best_matches": 3,
    "algo_cum": 14,
    "algo_wins": 1,
    "draw_date": "2026-09-05",
-   "random_cum_mean": 11.57,
-   "random_cum_p05": 7.0,
-   "random_cum_p95": 17.049999999999983,
-   "random_mean_wins": 0.125
+   "random_cum_mean": 11.32,
+   "random_cum_p05": 6.0,
+   "random_cum_p95": 17.0,
+   "random_mean_wins": 0.11
   },
   {
    "algo_best_matches": 2,
    "algo_cum": 14,
    "algo_wins": 0,
    "draw_date": "2026-09-12",
-   "random_cum_mean": 11.71,
-   "random_cum_p05": 7.0,
+   "random_cum_mean": 11.425,
+   "random_cum_p05": 6.0,
+   "random_cum_p95": 17.0,
+   "random_mean_wins": 0.105
+  },
+  {
+   "algo_best_matches": 2,
+   "algo_cum": 14,
+   "algo_wins": 0,
+   "draw_date": "2026-09-19",
+   "random_cum_mean": 11.525,
+   "random_cum_p05": 6.0,
+   "random_cum_p95": 17.0,
+   "random_mean_wins": 0.1
+  },
+  {
+   "algo_best_matches": 2,
+   "algo_cum": 14,
+   "algo_wins": 0,
+   "draw_date": "2026-09-26",
+   "random_cum_mean": 11.665,
+   "random_cum_p05": 6.0,
    "random_cum_p95": 17.049999999999983,
    "random_mean_wins": 0.14
   },
@@ -1016,30 +1026,10 @@
    "algo_best_matches": 2,
    "algo_cum": 14,
    "algo_wins": 0,
-   "draw_date": "2026-09-19",
-   "random_cum_mean": 11.815,
-   "random_cum_p05": 7.0,
-   "random_cum_p95": 17.049999999999983,
-   "random_mean_wins": 0.105
-  },
-  {
-   "algo_best_matches": 2,
-   "algo_cum": 14,
-   "algo_wins": 0,
-   "draw_date": "2026-09-26",
-   "random_cum_mean": 11.925,
-   "random_cum_p05": 7.0,
-   "random_cum_p95": 17.049999999999983,
-   "random_mean_wins": 0.11
-  },
-  {
-   "algo_best_matches": 2,
-   "algo_cum": 14,
-   "algo_wins": 0,
    "draw_date": "2026-10-03",
-   "random_cum_mean": 12.07,
-   "random_cum_p05": 7.0,
-   "random_cum_p95": 17.049999999999983,
+   "random_cum_mean": 11.81,
+   "random_cum_p05": 6.0,
+   "random_cum_p95": 18.0,
    "random_mean_wins": 0.145
   },
   {
@@ -1047,37 +1037,47 @@
    "algo_cum": 14,
    "algo_wins": 0,
    "draw_date": "2026-10-10",
-   "random_cum_mean": 12.16,
-   "random_cum_p05": 7.0,
+   "random_cum_mean": 11.935,
+   "random_cum_p05": 6.0,
    "random_cum_p95": 18.0,
-   "random_mean_wins": 0.09
+   "random_mean_wins": 0.125
   },
   {
    "algo_best_matches": 3,
    "algo_cum": 14,
    "algo_wins": 0,
    "draw_date": "2026-10-17",
-   "random_cum_mean": 12.305,
-   "random_cum_p05": 7.950000000000001,
+   "random_cum_mean": 12.095,
+   "random_cum_p05": 7.0,
    "random_cum_p95": 18.0,
-   "random_mean_wins": 0.145
+   "random_mean_wins": 0.16
+  },
+  {
+   "algo_best_matches": 2,
+   "algo_cum": 14,
+   "algo_wins": 0,
+   "draw_date": "2026-10-24",
+   "random_cum_mean": 12.16,
+   "random_cum_p05": 7.0,
+   "random_cum_p95": 18.0,
+   "random_mean_wins": 0.065
   }
  ],
  "random": {
   "divisions": {
    "1": 0.0,
    "2": 0.0,
-   "3": 0.035,
-   "4": 1.53,
-   "5": 3.625,
-   "6": 7.115
+   "3": 0.03,
+   "4": 1.415,
+   "5": 3.155,
+   "6": 7.56
   },
   "games": 1040,
-  "mean_matches": 0.8002115384615386,
-  "prize_games": 12.305,
-  "prize_games_p05": 7.950000000000001,
+  "mean_matches": 0.800139423076923,
+  "prize_games": 12.16,
+  "prize_games_p05": 7.0,
   "prize_games_p95": 18.0,
-  "prize_rate": 0.01183173076923077
+  "prize_rate": 0.011692307692307693
  },
  "random_trials": 200,
  "theory": {
@@ -1093,5 +1093,5 @@
   "prize_games": 12.173464652194092,
   "prize_rate": 0.01170525447326355
  },
- "verdict": "LottoLens picks won a prize in 14 of 1040 games. Random picks averaged 12.3 (90% of random trials fell between 8 and 18). That's no meaningful edge: the algorithm sits within what random picks normally do. This is the expected result. Every combination has exactly the same chance in every draw, and past results don't change future odds."
+ "verdict": "LottoLens picks won a prize in 14 of 1040 games. Random picks averaged 12.2 (90% of random trials fell between 7 and 18). That's no meaningful edge: the algorithm sits within what random picks normally do. This is the expected result. Every combination has exactly the same chance in every draw, and past results don't change future odds."
 }
